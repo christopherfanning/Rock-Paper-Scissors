@@ -6,9 +6,12 @@ public class Game {
 
     private ArrayList<String> gameHistory = new ArrayList<>();
     private int numberOfPlayers;
-    private Scanner s = new Scanner(System.in);
-    private Player player1;
-    private Player player2;
+    private final Scanner s = new Scanner(System.in);
+    private HumanPlayer player1;
+    private ComputerPlayer computerPlayer;
+    private ComputerPlayer computerPlayer2;
+    public Logger logger;
+
 
 
     public Game() {
@@ -16,21 +19,30 @@ public class Game {
         Scanner s = new Scanner(System.in);
     }
 
-    public Game(HumanPlayer player1, ComputerPlayer player2) {
-//        Human vs computer game
-        System.out.println("We are starting the dude vs robot game!!!");
-        playGame(player1, player2);
+    public Game(HumanPlayer player1, ComputerPlayer computerPlayer, Logger logger) {
+        // Human vs computer game
+        this.logger = logger;
+        this.player1 = player1;
+
+        playGame(this.player1, computerPlayer);
 
     }
 
-    public Game(HumanPlayer player1, HumanPlayer player2) {
-//        Human vs human game
+    public Game(HumanPlayer player1, HumanPlayer player2, Logger logger) {
+        // Human vs human game
+        this.logger = logger;
+        this.player1 = player1;
 
+        playGame(this.player1, player2);
     }
 
-
-    public Game(ComputerPlayer player1, ComputerPlayer player2) {
+    public Game(ComputerPlayer player1, ComputerPlayer player2, Logger logger) {
         // Computer vs computer game
+        this.logger = logger;
+        this.computerPlayer = player1;
+        this.computerPlayer2 = player2;
+
+        playGame(player1, player2);
     }
 
 
@@ -40,42 +52,59 @@ public class Game {
         int p1turn = player1.takeTurn();
         int p2turn = player2.takeTurn();
 
-        compareResults(p1turn, p2turn);
+        compareResults(p1turn, p2turn, player1, player2);
 
 
     }
 
 
-    private void compareResults(int p1, int p2) {
+    private void compareResults(int p1, int p2, Player player1, Player player2) {
         System.out.println("Comparing results");
-        String p1Choice = "";
-        String p2Choice = "";
+        String[] weapons = {"rock", "paper", "scissors"};
 
-        if( p1 == 1){
+//        System.out.println("p1 is: " + p1 + " and p2 is : " + p2);
+        String p1Choice = weapons[p1 - 1];
+        String p2Choice = weapons[p2 - 1];
+
+        String winningType = "";
+        String losingType = "";
+
+        int winningNum = 0;
+        String winner = "";
+        String loser = "";
+
+
+        if (p1 == 1) {
             // Player has chosen rock
-            if (p2 == 2){
+            if (p2 == 2) {
                 // p2 wins
-            }else if (p2 == 3) {
+                winningNum = 2;
+            } else if (p2 == 3) {
                 // p1 wins
-            }else{
+                winningNum = 1;
+            } else {
                 // draw condition
             }
 
-        } else if (p1 == 2){
+        } else if (p1 == 2) {
             // p1 chooses paper
-            if(p2 == 3){
+            if (p2 == 3) {
                 // p2 wins
-            }else if (p2 == 1){
+                winningNum = 2;
+            } else if (p2 == 1) {
                 // p1 wins
-            }else{
+                winningNum = 1;
+            } else {
                 // draw
             }
-        } else if (p1 == 3){
+        } else if (p1 == 3) {
             // p1 gets scissors
-            if(p2 == 1){
-                // p2 wins smashing scissors
-            }else if (p2 == 2){
-                // p1 wins cutting paper.
+            if (p2 == 1) {
+                // p2 wins with a rock
+                winningNum = 2;
+            } else if (p2 == 2) {
+                // p1 wins  with paper
+                winningNum = 1;
             } else {
 //                draw.
             }
@@ -84,30 +113,42 @@ public class Game {
             System.out.println("Something went wrong when trying to determine the winner check compareResults()");
         }
 
+        if (winningNum == 1) {
+            // player one wins
+
+            winningType = player1.getName();
+            losingType = player2.getType();
+            winner = p1Choice;
+            loser = p2Choice;
+            logger.logGame(winningNum, winner, loser, winningType, losingType);
+            System.out.println(winningType + " picks " + winner);
+            System.out.println(losingType + " picks " + loser);
+            System.out.println(winningType + " wins!");
+
+        } else if (winningNum == 2) {
+            // player 2 wins
+            winningType = player2.getType();
+            losingType = player1.getType();
+            winner = p2Choice;
+            loser = p1Choice;
+            logger.logGame(winningNum, winner, loser, winningType, losingType);
+            System.out.println(winningType + " picks " + winner);
+            System.out.println(losingType + " picks " + loser);
+            System.out.println(winningType + " wins!");
+
+        } else {
+            System.out.println("It's a tie! You both picked " + p1Choice );
+            logger.logTieGame(p1Choice);
+        }
+
+
+        System.out.println();
+        System.out.println();
+
 
     }
 
 
-    private void logger(int p1, int p2, Player whoWon){
-        // Who won && what did they pick && what was the loser's choice.
-       StringBuilder sb = new StringBuilder();
 
-
-    }
-
-    private void playerWins() {
-        // The player wins;
-        System.out.println("The player wins!");
-
-    }
-
-    private void computerWins() {
-        // The computer overlords win.
-
-        System.out.println("The computer overlords win.");
-    }
-
-    private void tieGame() {
-    }
 
 }

@@ -3,6 +3,20 @@ import java.util.Scanner;
 
 public class HumanPlayer extends Player {
 
+    String type = "Human";
+    String name = "";
+
+    public HumanPlayer(String name) {
+        this.name = name;
+    }
+
+    public String getName(){
+        return this.name;
+    }
+
+    public String getType(){
+        return type;
+    }
 
     public int takeTurn() {
         Scanner s = new Scanner(System.in);
@@ -22,4 +36,6 @@ public class HumanPlayer extends Player {
         return -1;
 
     }
+
+
 }
