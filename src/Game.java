@@ -20,6 +20,8 @@ public class Game {
         displayMenu();
     }
 
+    // Different constructors for computer vs human -or- computer.vs.computer -or- human.vs.computer.
+
 
     private void displayMenu() {
         // Logic for showing the menu.
