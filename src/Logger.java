@@ -15,6 +15,7 @@ public class Logger {
 
         sb.append("Player ");
         sb.append(winningNum);
+        sb.append(" a " + winningType);
         sb.append(" WINS ");
         sb.append(" with ");
         sb.append(winner);

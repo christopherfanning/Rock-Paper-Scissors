@@ -4,7 +4,7 @@ public abstract class Player {
     String type = "Default type";
 
     public Player() {
-        System.out.println(this.getClass() + "Got made!");
+//        System.out.println(this.getClass() + "Got made!");
     }
 
     public String getName() {

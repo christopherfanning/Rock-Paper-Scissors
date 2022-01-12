@@ -27,7 +27,7 @@ public class Menu {
         // Logic for showing the menu.
 
         System.out.println("MAIN MENU");
-        System.out.println("=====");
+        System.out.println("=========");
         System.out.println("0. Type 'play' to play the computer.");
         System.out.println("1. Type 'pvp' to battle another human.");
         System.out.println("2. Type 'cvc' to let the computers fight it out.");
