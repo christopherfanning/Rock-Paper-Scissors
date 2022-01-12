@@ -6,9 +6,8 @@ public class Main {
 
         // main game launcher
 
-        Game game = new Game();
-        game.startGame();
 
+        Menu menu = new Menu();
     }
 
 
