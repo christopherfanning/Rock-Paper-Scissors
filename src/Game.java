@@ -26,7 +26,6 @@ public class Game {
     public Game(HumanPlayer player1, HumanPlayer player2) {
 //        Human vs human game
 
-
     }
 
 
@@ -47,40 +46,54 @@ public class Game {
     }
 
 
-    private void compareResults(int p1turn, int p2turn) {
+    private void compareResults(int p1, int p2) {
         System.out.println("Comparing results");
+        String p1Choice = "";
+        String p2Choice = "";
 
+        if( p1 == 1){
+            // Player has chosen rock
+            if (p2 == 2){
+                // p2 wins
+            }else if (p2 == 3) {
+                // p1 wins
+            }else{
+                // draw condition
+            }
 
-//        if (playerChoice.equals("rock")) {
-//
-//            if (computerChoice == 3){
-//                playerWins();
-//            }else if (computerChoice == 2){
-//                computerWins();
-//            } else {
-//                tieGame();
-//            }
-//
-//        } else if (playerChoice.equals("paper")) {
-//            if (computerChoice == 1){
-//                playerWins();
-//            }else if (computerChoice == 3){
-//                computerWins();
-//            }
-//
-//        } else if (playerChoice.equals("scissors")) {
-//
-//            if (computerChoice == 2){
-//                playerWins();
-//            }else if (computerChoice == 1){
-//                computerWins();
-//            }
-//        } else {
-//            playGame();
-//        }
+        } else if (p1 == 2){
+            // p1 chooses paper
+            if(p2 == 3){
+                // p2 wins
+            }else if (p2 == 1){
+                // p1 wins
+            }else{
+                // draw
+            }
+        } else if (p1 == 3){
+            // p1 gets scissors
+            if(p2 == 1){
+                // p2 wins smashing scissors
+            }else if (p2 == 2){
+                // p1 wins cutting paper.
+            } else {
+//                draw.
+            }
+
+        } else {
+            System.out.println("Something went wrong when trying to determine the winner check compareResults()");
+        }
+
 
     }
 
+
+    private void logger(int p1, int p2, Player whoWon){
+        // Who won && what did they pick && what was the loser's choice.
+       StringBuilder sb = new StringBuilder();
+
+
+    }
 
     private void playerWins() {
         // The player wins;

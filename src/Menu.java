@@ -1,14 +1,16 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Menu {
 
     Scanner s = new Scanner(System.in);
+    ArrayList<String> gameHistory = new ArrayList<>();
 
     public Menu() {
         displayMenu();
     }
 
-    private void displayMenu() {
+    public void displayMenu() {
         // Logic for showing the menu.
 
         System.out.println("MAIN MENU");
@@ -36,5 +38,8 @@ public class Menu {
 
     }
 
+    public void getHistory(){
+
+    }
 
 }
